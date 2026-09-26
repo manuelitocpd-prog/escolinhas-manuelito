@@ -13,8 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
+import { Route as AuthenticatedProfessoresRouteImport } from './routes/_authenticated/professores'
 import { Route as AuthenticatedAlunosIndexRouteImport } from './routes/_authenticated/alunos/index'
 import { Route as AuthenticatedAlunosIdRouteImport } from './routes/_authenticated/alunos/$id'
+import { Route as AuthenticatedModalidadesIndexRouteImport } from './routes/_authenticated/modalidades/index'
+import { Route as AuthenticatedModalidadesIdRouteImport } from './routes/_authenticated/modalidades/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,6 +38,12 @@ const AuthenticatedPainelRoute = AuthenticatedPainelRouteImport.update({
   path: '/painel',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedProfessoresRoute =
+  AuthenticatedProfessoresRouteImport.update({
+    id: '/professores',
+    path: '/professores',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAlunosIndexRoute =
   AuthenticatedAlunosIndexRouteImport.update({
     id: '/alunos/',
@@ -46,20 +55,38 @@ const AuthenticatedAlunosIdRoute = AuthenticatedAlunosIdRouteImport.update({
   path: '/alunos/$id',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedModalidadesIndexRoute =
+  AuthenticatedModalidadesIndexRouteImport.update({
+    id: '/modalidades/',
+    path: '/modalidades/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedModalidadesIdRoute =
+  AuthenticatedModalidadesIdRouteImport.update({
+    id: '/modalidades/$id',
+    path: '/modalidades/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/painel': typeof AuthenticatedPainelRoute
+  '/professores': typeof AuthenticatedProfessoresRoute
   '/alunos/$id': typeof AuthenticatedAlunosIdRoute
+  '/modalidades/$id': typeof AuthenticatedModalidadesIdRoute
   '/alunos/': typeof AuthenticatedAlunosIndexRoute
+  '/modalidades/': typeof AuthenticatedModalidadesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/painel': typeof AuthenticatedPainelRoute
+  '/professores': typeof AuthenticatedProfessoresRoute
   '/alunos/$id': typeof AuthenticatedAlunosIdRoute
+  '/modalidades/$id': typeof AuthenticatedModalidadesIdRoute
   '/alunos': typeof AuthenticatedAlunosIndexRoute
+  '/modalidades': typeof AuthenticatedModalidadesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,22 +94,44 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
+  '/_authenticated/professores': typeof AuthenticatedProfessoresRoute
   '/_authenticated/alunos/$id': typeof AuthenticatedAlunosIdRoute
+  '/_authenticated/modalidades/$id': typeof AuthenticatedModalidadesIdRoute
   '/_authenticated/alunos/': typeof AuthenticatedAlunosIndexRoute
+  '/_authenticated/modalidades/': typeof AuthenticatedModalidadesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/painel' | '/alunos/$id' | '/alunos/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/painel'
+    | '/professores'
+    | '/alunos/$id'
+    | '/modalidades/$id'
+    | '/alunos/'
+    | '/modalidades/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/painel' | '/alunos/$id' | '/alunos'
+  to:
+    | '/'
+    | '/auth'
+    | '/painel'
+    | '/professores'
+    | '/alunos/$id'
+    | '/modalidades/$id'
+    | '/alunos'
+    | '/modalidades'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/painel'
+    | '/_authenticated/professores'
     | '/_authenticated/alunos/$id'
+    | '/_authenticated/modalidades/$id'
     | '/_authenticated/alunos/'
+    | '/_authenticated/modalidades/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -121,6 +170,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/professores': {
+      id: '/_authenticated/professores'
+      path: '/professores'
+      fullPath: '/professores'
+      preLoaderRoute: typeof AuthenticatedProfessoresRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/alunos/': {
       id: '/_authenticated/alunos/'
       path: '/alunos'
@@ -135,19 +191,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAlunosIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/modalidades/': {
+      id: '/_authenticated/modalidades/'
+      path: '/modalidades'
+      fullPath: '/modalidades/'
+      preLoaderRoute: typeof AuthenticatedModalidadesIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/modalidades/$id': {
+      id: '/_authenticated/modalidades/$id'
+      path: '/modalidades/$id'
+      fullPath: '/modalidades/$id'
+      preLoaderRoute: typeof AuthenticatedModalidadesIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
+  AuthenticatedProfessoresRoute: typeof AuthenticatedProfessoresRoute
   AuthenticatedAlunosIdRoute: typeof AuthenticatedAlunosIdRoute
+  AuthenticatedModalidadesIdRoute: typeof AuthenticatedModalidadesIdRoute
   AuthenticatedAlunosIndexRoute: typeof AuthenticatedAlunosIndexRoute
+  AuthenticatedModalidadesIndexRoute: typeof AuthenticatedModalidadesIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
+  AuthenticatedProfessoresRoute: AuthenticatedProfessoresRoute,
   AuthenticatedAlunosIdRoute: AuthenticatedAlunosIdRoute,
+  AuthenticatedModalidadesIdRoute: AuthenticatedModalidadesIdRoute,
   AuthenticatedAlunosIndexRoute: AuthenticatedAlunosIndexRoute,
+  AuthenticatedModalidadesIndexRoute: AuthenticatedModalidadesIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
