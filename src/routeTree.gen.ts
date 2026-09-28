@@ -14,6 +14,8 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
 import { Route as AuthenticatedProfessoresRouteImport } from './routes/_authenticated/professores'
+import { Route as AuthenticatedQuadroRouteImport } from './routes/_authenticated/quadro'
+import { Route as AuthenticatedTurmasRouteImport } from './routes/_authenticated/turmas'
 import { Route as AuthenticatedAlunosIndexRouteImport } from './routes/_authenticated/alunos/index'
 import { Route as AuthenticatedAlunosIdRouteImport } from './routes/_authenticated/alunos/$id'
 import { Route as AuthenticatedModalidadesIndexRouteImport } from './routes/_authenticated/modalidades/index'
@@ -44,6 +46,16 @@ const AuthenticatedProfessoresRoute =
     path: '/professores',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedQuadroRoute = AuthenticatedQuadroRouteImport.update({
+  id: '/quadro',
+  path: '/quadro',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTurmasRoute = AuthenticatedTurmasRouteImport.update({
+  id: '/turmas',
+  path: '/turmas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAlunosIndexRoute =
   AuthenticatedAlunosIndexRouteImport.update({
     id: '/alunos/',
@@ -73,6 +85,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/painel': typeof AuthenticatedPainelRoute
   '/professores': typeof AuthenticatedProfessoresRoute
+  '/quadro': typeof AuthenticatedQuadroRoute
+  '/turmas': typeof AuthenticatedTurmasRoute
   '/alunos/$id': typeof AuthenticatedAlunosIdRoute
   '/modalidades/$id': typeof AuthenticatedModalidadesIdRoute
   '/alunos/': typeof AuthenticatedAlunosIndexRoute
@@ -83,6 +97,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/painel': typeof AuthenticatedPainelRoute
   '/professores': typeof AuthenticatedProfessoresRoute
+  '/quadro': typeof AuthenticatedQuadroRoute
+  '/turmas': typeof AuthenticatedTurmasRoute
   '/alunos/$id': typeof AuthenticatedAlunosIdRoute
   '/modalidades/$id': typeof AuthenticatedModalidadesIdRoute
   '/alunos': typeof AuthenticatedAlunosIndexRoute
@@ -95,6 +111,8 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
   '/_authenticated/professores': typeof AuthenticatedProfessoresRoute
+  '/_authenticated/quadro': typeof AuthenticatedQuadroRoute
+  '/_authenticated/turmas': typeof AuthenticatedTurmasRoute
   '/_authenticated/alunos/$id': typeof AuthenticatedAlunosIdRoute
   '/_authenticated/modalidades/$id': typeof AuthenticatedModalidadesIdRoute
   '/_authenticated/alunos/': typeof AuthenticatedAlunosIndexRoute
@@ -107,6 +125,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/painel'
     | '/professores'
+    | '/quadro'
+    | '/turmas'
     | '/alunos/$id'
     | '/modalidades/$id'
     | '/alunos/'
@@ -117,6 +137,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/painel'
     | '/professores'
+    | '/quadro'
+    | '/turmas'
     | '/alunos/$id'
     | '/modalidades/$id'
     | '/alunos'
@@ -128,6 +150,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/painel'
     | '/_authenticated/professores'
+    | '/_authenticated/quadro'
+    | '/_authenticated/turmas'
     | '/_authenticated/alunos/$id'
     | '/_authenticated/modalidades/$id'
     | '/_authenticated/alunos/'
@@ -177,6 +201,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfessoresRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/quadro': {
+      id: '/_authenticated/quadro'
+      path: '/quadro'
+      fullPath: '/quadro'
+      preLoaderRoute: typeof AuthenticatedQuadroRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/turmas': {
+      id: '/_authenticated/turmas'
+      path: '/turmas'
+      fullPath: '/turmas'
+      preLoaderRoute: typeof AuthenticatedTurmasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/alunos/': {
       id: '/_authenticated/alunos/'
       path: '/alunos'
@@ -211,6 +249,8 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
   AuthenticatedProfessoresRoute: typeof AuthenticatedProfessoresRoute
+  AuthenticatedQuadroRoute: typeof AuthenticatedQuadroRoute
+  AuthenticatedTurmasRoute: typeof AuthenticatedTurmasRoute
   AuthenticatedAlunosIdRoute: typeof AuthenticatedAlunosIdRoute
   AuthenticatedModalidadesIdRoute: typeof AuthenticatedModalidadesIdRoute
   AuthenticatedAlunosIndexRoute: typeof AuthenticatedAlunosIndexRoute
@@ -220,6 +260,8 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
   AuthenticatedProfessoresRoute: AuthenticatedProfessoresRoute,
+  AuthenticatedQuadroRoute: AuthenticatedQuadroRoute,
+  AuthenticatedTurmasRoute: AuthenticatedTurmasRoute,
   AuthenticatedAlunosIdRoute: AuthenticatedAlunosIdRoute,
   AuthenticatedModalidadesIdRoute: AuthenticatedModalidadesIdRoute,
   AuthenticatedAlunosIndexRoute: AuthenticatedAlunosIndexRoute,
