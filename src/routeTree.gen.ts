@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedComunicacaoRouteImport } from './routes/_authenticated/comunicacao'
+import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
 import { Route as AuthenticatedHorariosRouteImport } from './routes/_authenticated/horarios'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
 import { Route as AuthenticatedProfessoresRouteImport } from './routes/_authenticated/professores'
@@ -35,6 +37,17 @@ const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedComunicacaoRoute =
+  AuthenticatedComunicacaoRouteImport.update({
+    id: '/comunicacao',
+    path: '/comunicacao',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedHorariosRoute = AuthenticatedHorariosRouteImport.update({
   id: '/horarios',
@@ -89,6 +102,8 @@ const AuthenticatedModalidadesIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/comunicacao': typeof AuthenticatedComunicacaoRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/horarios': typeof AuthenticatedHorariosRoute
   '/painel': typeof AuthenticatedPainelRoute
   '/professores': typeof AuthenticatedProfessoresRoute
@@ -102,6 +117,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/comunicacao': typeof AuthenticatedComunicacaoRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/horarios': typeof AuthenticatedHorariosRoute
   '/painel': typeof AuthenticatedPainelRoute
   '/professores': typeof AuthenticatedProfessoresRoute
@@ -117,6 +134,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/comunicacao': typeof AuthenticatedComunicacaoRoute
+  '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
   '/_authenticated/horarios': typeof AuthenticatedHorariosRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
   '/_authenticated/professores': typeof AuthenticatedProfessoresRoute
@@ -132,6 +151,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/comunicacao'
+    | '/financeiro'
     | '/horarios'
     | '/painel'
     | '/professores'
@@ -145,6 +166,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/comunicacao'
+    | '/financeiro'
     | '/horarios'
     | '/painel'
     | '/professores'
@@ -159,6 +182,8 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/comunicacao'
+    | '/_authenticated/financeiro'
     | '/_authenticated/horarios'
     | '/_authenticated/painel'
     | '/_authenticated/professores'
@@ -198,6 +223,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/comunicacao': {
+      id: '/_authenticated/comunicacao'
+      path: '/comunicacao'
+      fullPath: '/comunicacao'
+      preLoaderRoute: typeof AuthenticatedComunicacaoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/financeiro': {
+      id: '/_authenticated/financeiro'
+      path: '/financeiro'
+      fullPath: '/financeiro'
+      preLoaderRoute: typeof AuthenticatedFinanceiroRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/horarios': {
       id: '/_authenticated/horarios'
@@ -266,6 +305,8 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedComunicacaoRoute: typeof AuthenticatedComunicacaoRoute
+  AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
   AuthenticatedHorariosRoute: typeof AuthenticatedHorariosRoute
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
   AuthenticatedProfessoresRoute: typeof AuthenticatedProfessoresRoute
@@ -278,6 +319,8 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedComunicacaoRoute: AuthenticatedComunicacaoRoute,
+  AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
   AuthenticatedHorariosRoute: AuthenticatedHorariosRoute,
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
   AuthenticatedProfessoresRoute: AuthenticatedProfessoresRoute,
