@@ -76,7 +76,7 @@ function RelatoriosPage() {
   );
 
   const report = useMemo(() => {
-    const filterStudent = (s: (typeof students.data)[number] | undefined) =>
+    const filterStudent = (s: import("@/lib/data").StudentStatus | undefined) =>
       !!s &&
       (modality === ALL || s.modality_id === modality) &&
       (teacher === ALL || s.teacher_id === teacher);

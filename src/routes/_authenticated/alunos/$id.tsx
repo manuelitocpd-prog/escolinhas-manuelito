@@ -173,9 +173,9 @@ function StudentProfile() {
                       <td className="px-3 py-2">{formatDate(p.paid_at)}</td>
                       <td className="px-3 py-2">
                         <span
-                          className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${PAYMENT_SITUATION_LABEL[sit].className}`}
+                          className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${PAYMENT_SITUATION_LABEL[sit]!.className}`}
                         >
-                          {PAYMENT_SITUATION_LABEL[sit].label}
+                          {PAYMENT_SITUATION_LABEL[sit]!.label}
                         </span>
                       </td>
                       <td className="px-3 py-2 text-right">
