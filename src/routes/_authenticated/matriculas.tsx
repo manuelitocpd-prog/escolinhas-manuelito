@@ -266,10 +266,9 @@ function LeadDialog({ lead, onClose }: { lead: Lead; onClose: () => void }) {
   async function save() {
     if (!form.student_name.trim()) return toast.error("Informe o nome do aluno.");
     setSaving(true);
-    const { id, created_at, converted_student_id, ...payload } = form as Lead & Record<string, unknown>;
-    delete (payload as Record<string, unknown>)["modalities"];
-    delete (payload as Record<string, unknown>)["classes"];
-    delete (payload as Record<string, unknown>)["updated_at"];
+    const { id } = form;
+    const keys = Object.keys(EMPTY) as (keyof Lead)[];
+    const payload = Object.fromEntries(keys.map((k) => [k, form[k] ?? null])) as typeof EMPTY & { student_name: string; status: string };
     const res = id ? await supabase.from("leads").update(payload).eq("id", id) : await supabase.from("leads").insert(payload);
     setSaving(false);
     if (res.error) return toast.error(res.error.message);
