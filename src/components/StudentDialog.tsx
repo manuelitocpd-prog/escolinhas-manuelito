@@ -105,7 +105,7 @@ export function StudentDialog({
   }, [open, student]);
 
   const availableClasses = (classes.data ?? []).filter(
-    (c) => !form.modality_id || c.modality_id === form.modality_id,
+    (c) => (!form.modality_id || c.modality_id === form.modality_id) && (c.status === "ativa" || c.id === form.class_id),
   );
   const selectedClass = availableClasses.find((c) => c.id === form.class_id);
 
