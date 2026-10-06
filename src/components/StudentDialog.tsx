@@ -370,7 +370,7 @@ export function StudentDialog({
                     <SelectValue placeholder="Selecione" />
                   </SelectTrigger>
                   <SelectContent>
-                    {(modalities.data ?? []).map((m) => (
+                    {(modalities.data ?? []).filter((m) => !m.archived || m.id === form.modality_id).map((m) => (
                       <SelectItem key={m.id} value={m.id}>
                         {m.name}
                       </SelectItem>
