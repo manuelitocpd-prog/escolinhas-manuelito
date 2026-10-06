@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { FileDown, Sheet } from "lucide-react";
@@ -222,7 +223,10 @@ function FinanceiroPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right">
+                    <div className="flex items-center justify-end gap-1">
                     {p.paid_at ? null : <RegisterPaymentDialog payment={p} />}
+                    <RecordActions entity="payment" id={p.id} name={`${formatCurrency(p.amount)} — ${formatMonth(p.reference_month)} — ${p.students?.name ?? ""}`} />
+                    </div>
                   </td>
                 </tr>
               );

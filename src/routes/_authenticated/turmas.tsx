@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
@@ -103,7 +104,7 @@ function TurmasPage() {
           <tbody>
             {list.map((c) => (
               <tr key={c.id} className="border-t border-border">
-                <td className="px-4 py-3 font-medium">{c.name}</td>
+                <td className="px-4 py-3 font-medium">{c.name}{c.status !== "ativa" ? <span className="ml-2 text-xs text-muted-foreground">(arquivada)</span> : null}</td>
                 <td className="px-4 py-3">{c.modality_name}</td>
                 <td className="px-4 py-3">{c.teacher_name ?? "—"}</td>
                 <td className="px-4 py-3">{formatDays(c.days)}</td>
@@ -127,6 +128,7 @@ function TurmasPage() {
                       </Button>
                     }
                   />
+                  <RecordActions entity="class" id={c.id} name={c.name} archived={c.status !== "ativa"} modalityId={c.modality_id} />
                 </td>
               </tr>
             ))}
@@ -168,6 +170,7 @@ function TurmasPage() {
                   </Button>
                 }
               />
+              <RecordActions entity="class" id={c.id} name={c.name} archived={c.status !== "ativa"} modalityId={c.modality_id} />
             </CardContent>
           </Card>
         ))}

@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -210,6 +211,7 @@ function ModalidadesPage() {
                       </Button>
                     }
                   />
+                  <RecordActions entity="modality" id={m.id} name={m.name} archived={m.archived} />
                 </div>
               </CardContent>
             </Card>

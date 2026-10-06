@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -186,6 +187,7 @@ function ProfessoresPage() {
                   )}
                 </div>
                 {t.notes ? <p className="text-xs text-muted-foreground">{t.notes}</p> : null}
+                <div className="flex flex-wrap gap-2">
                 <TeacherDialog
                   teacher={t as Teacher}
                   trigger={
@@ -194,6 +196,8 @@ function ProfessoresPage() {
                     </Button>
                   }
                 />
+                <RecordActions entity="teacher" id={t.id} name={t.name} archived={!t.active} />
+                </div>
               </CardContent>
             </Card>
           );

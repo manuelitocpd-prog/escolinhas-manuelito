@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
@@ -229,7 +230,7 @@ function MatriculasPage() {
                   <td className="px-3 py-2">{formatDate(String(l.created_at).slice(0, 10))}</td>
                   <td className="px-3 py-2">
                     <div className="flex justify-end gap-1">
-                      <Button size="sm" variant="ghost" onClick={() => setEditing(l as Lead)}><Pencil className="size-4" /></Button>
+                      <RecordActions entity="lead" id={l.id} name={l.student_name} onEdit={() => setEditing(l as Lead)} />
                       {l.status !== "confirmada" ? (
                         <Button size="sm" disabled={confirming === l.id} onClick={() => confirm(l)}><CheckCircle2 className="mr-1 size-4" /> Confirmar matrícula</Button>
                       ) : null}
