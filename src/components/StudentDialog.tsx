@@ -105,7 +105,7 @@ export function StudentDialog({
   }, [open, student]);
 
   const availableClasses = (classes.data ?? []).filter(
-    (c) => !form.modality_id || c.modality_id === form.modality_id,
+    (c) => (!form.modality_id || c.modality_id === form.modality_id) && (c.status === "ativa" || c.id === form.class_id),
   );
   const selectedClass = availableClasses.find((c) => c.id === form.class_id);
 
@@ -370,7 +370,7 @@ export function StudentDialog({
                     <SelectValue placeholder="Selecione" />
                   </SelectTrigger>
                   <SelectContent>
-                    {(modalities.data ?? []).map((m) => (
+                    {(modalities.data ?? []).filter((m) => !m.archived || m.id === form.modality_id).map((m) => (
                       <SelectItem key={m.id} value={m.id}>
                         {m.name}
                       </SelectItem>

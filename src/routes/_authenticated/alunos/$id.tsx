@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { RecordActions } from "@/components/RecordActions";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/_authenticated/alunos/$id")({
 
 function StudentProfile() {
   const { id } = Route.useParams();
+  const navigate = useNavigate();
   const student = useStudent(id);
   const payments = usePayments(id);
 
@@ -82,6 +84,15 @@ function StudentProfile() {
           <>
             <StudentDialog student={s} trigger={<Button variant="outline">Editar aluno</Button>} />
             <NewChargeDialog studentId={s.id} />
+            <RecordActions
+              entity="student"
+              id={s.id}
+              name={s.name}
+              archived={s.enrollment_status === "arquivado" || s.enrollment_status === "inativo"}
+              variant="buttons"
+              onDeleted={() => navigate({ to: "/alunos" })}
+              description="O aluno possui informações cadastrais e poderá possuir histórico de matrículas e pagamentos."
+            />
           </>
         }
       />
@@ -179,7 +190,10 @@ function StudentProfile() {
                         </span>
                       </td>
                       <td className="px-3 py-2 text-right">
+                        <div className="flex items-center justify-end gap-1">
                         {!p.paid_at ? <RegisterPaymentDialog payment={p} /> : null}
+                        <RecordActions entity="payment" id={p.id} name={`${formatCurrency(p.amount)} — ${formatMonth(p.reference_month)} — ${s.name}`} />
+                        </div>
                       </td>
                     </tr>
                   );

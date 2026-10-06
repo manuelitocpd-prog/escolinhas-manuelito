@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -123,7 +124,10 @@ function SimpleList({ title, table, query }: { title: string; table: "payment_me
         {(query.data ?? []).map((r) => (
           <div key={r.id} className="flex items-center justify-between rounded-md border border-border px-3 py-2 text-sm">
             <span className={r.active ? "" : "text-muted-foreground line-through"}>{r.name}</span>
-            <Switch checked={r.active} onCheckedChange={(v) => toggle(r.id, v)} />
+            <div className="flex items-center gap-1">
+              <Switch checked={r.active} onCheckedChange={(v) => toggle(r.id, v)} />
+              <RecordActions entity={table === "payment_methods" ? "payment_method" : "lead_source"} id={r.id} name={r.name} archived={!r.active} />
+            </div>
           </div>
         ))}
         <div className="flex gap-2"><Input placeholder="Adicionar" value={name} onChange={(e) => setName(e.target.value)} /><Button onClick={add}>Adicionar</Button></div>

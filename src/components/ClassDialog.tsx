@@ -147,7 +147,7 @@ export function ClassDialog({
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent>
-                  {(modalities.data ?? []).map((m) => (
+                  {(modalities.data ?? []).filter((m) => !m.archived || m.id === form.modality_id).map((m) => (
                     <SelectItem key={m.id} value={m.id}>
                       {m.name}
                     </SelectItem>
@@ -165,7 +165,7 @@ export function ClassDialog({
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent>
-                  {(teachers.data ?? []).map((t) => (
+                  {(teachers.data ?? []).filter((t) => t.active || t.id === form.teacher_id).map((t) => (
                     <SelectItem key={t.id} value={t.id}>
                       {t.name}
                     </SelectItem>
