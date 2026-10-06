@@ -1,3 +1,4 @@
+import { RecordActions } from "@/components/RecordActions";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, FileDown } from "lucide-react";
 
@@ -70,9 +71,12 @@ function ModalityDetail() {
         title={modality.name}
         subtitle={modality.description ?? "Escolinha esportiva"}
         actions={
-          <Button variant="outline" onClick={exportPdf}>
-            <FileDown className="mr-1 size-4" /> Exportar lista em PDF
-          </Button>
+          <>
+            <Button variant="outline" onClick={exportPdf}>
+              <FileDown className="mr-1 size-4" /> Exportar lista em PDF
+            </Button>
+            <RecordActions entity="modality" id={modality.id} name={modality.name} archived={modality.archived} variant="buttons" />
+          </>
         }
       />
 
