@@ -347,16 +347,19 @@ export type Database = {
           active: boolean
           id: string
           name: string
+          updated_at: string
         }
         Insert: {
           active?: boolean
           id?: string
           name: string
+          updated_at?: string
         }
         Update: {
           active?: boolean
           id?: string
           name?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -590,16 +593,19 @@ export type Database = {
           active: boolean
           id: string
           name: string
+          updated_at: string
         }
         Insert: {
           active?: boolean
           id?: string
           name: string
+          updated_at?: string
         }
         Update: {
           active?: boolean
           id?: string
           name?: string
+          updated_at?: string
         }
         Relationships: []
       }
