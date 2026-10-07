@@ -8,6 +8,13 @@
       "when": 1790163701879,
       "tag": "0000_escolinhas_core_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791378260379,
+      "tag": "0001_add_updated_at_lookup_tables",
+      "breakpoints": true
     }
   ]
 }
